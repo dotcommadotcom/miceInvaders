@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mice_invaders.miceInvaderTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2021-05-30T13:03:58" hostname="jiwoo.local" time="0.102">
+  <properties/>
+  <testcase name="moveCatOneStepRight()" classname="mice_invaders.miceInvaderTest" time="0.044"/>
+  <testcase name="placeCatInArena()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="placeCatOutsideArenaThrowException()" classname="mice_invaders.miceInvaderTest" time="0.004"/>
+  <testcase name="placeCatWithDimensionsOutsideArena()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="moveCatRightButStaysStill()" classname="mice_invaders.miceInvaderTest" time="0.001"/>
+  <testcase name="moveCatOneStepLeft()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="checkIsOutsideArenaReturnsTrue()" classname="mice_invaders.miceInvaderTest" time="0.011"/>
+  <testcase name="createArena()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="moveCatWithDimensionsRightButStaysStill()" classname="mice_invaders.miceInvaderTest" time="0.005"/>
+  <testcase name="checkIsOutsideArenaReturnsFalse()" classname="mice_invaders.miceInvaderTest" time="0.005"/>
+  <testcase name="canaryTest()" classname="mice_invaders.miceInvaderTest" time="0.006"/>
+  <testcase name="moveCatLeftButStaysStill()" classname="mice_invaders.miceInvaderTest" time="0.001"/>
+  <testcase name="placeCatWithDimensions()" classname="mice_invaders.miceInvaderTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
