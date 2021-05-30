@@ -1,2 +1,2 @@
-space_invader/SpaceInvaderTest.java
- space_invader.SpaceInvaderTest
+mice_invaders/miceInvaderTest.java
+ mice_invaders.miceInvaderTest
