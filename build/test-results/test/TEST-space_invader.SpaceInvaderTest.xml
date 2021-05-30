@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="space_invader.SpaceInvaderTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2021-05-30T10:30:21" hostname="jiwoo.local" time="0.278">
+  <properties/>
+  <testcase name="moveCatOneStepRight()" classname="space_invader.SpaceInvaderTest" time="0.123"/>
+  <testcase name="placeCatInArena()" classname="space_invader.SpaceInvaderTest" time="0.003"/>
+  <testcase name="placeCatOutsideArenaThrowException()" classname="space_invader.SpaceInvaderTest" time="0.009"/>
+  <testcase name="placeCatWithDimensionsOutsideArena()" classname="space_invader.SpaceInvaderTest" time="0.01"/>
+  <testcase name="moveCatRightButStaysStill()" classname="space_invader.SpaceInvaderTest" time="0.004"/>
+  <testcase name="moveCatOneStepLeft()" classname="space_invader.SpaceInvaderTest" time="0.002"/>
+  <testcase name="checkIsOutsideArenaReturnsTrue()" classname="space_invader.SpaceInvaderTest" time="0.013"/>
+  <testcase name="createArena()" classname="space_invader.SpaceInvaderTest" time="0.005"/>
+  <testcase name="moveCatWithDimensionsRightButStaysStill()" classname="space_invader.SpaceInvaderTest" time="0.005"/>
+  <testcase name="checkIsOutsideArenaReturnsFalse()" classname="space_invader.SpaceInvaderTest" time="0.027"/>
+  <testcase name="canaryTest()" classname="space_invader.SpaceInvaderTest" time="0.007"/>
+  <testcase name="moveCatLeftButStaysStill()" classname="space_invader.SpaceInvaderTest" time="0.002"/>
+  <testcase name="placeCatWithDimensions()" classname="space_invader.SpaceInvaderTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
