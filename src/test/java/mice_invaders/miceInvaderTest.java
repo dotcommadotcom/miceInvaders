@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class miceInvaderTest {
 
-  MiceInvader spaceInvader;
+  MiceInvader miceInvader;
 
   @BeforeEach
   public void setUp() {
-    spaceInvader = new MiceInvader(15, 10);
+    miceInvader = new MiceInvader(15, 10);
   }
 
   @Test
@@ -20,7 +20,7 @@ public class miceInvaderTest {
   }
 
   @Test
-  public void createArena() {
+  public void createArenaAndConvertToString() {
     assertEquals("""
             ...............
             ...............
@@ -32,12 +32,12 @@ public class miceInvaderTest {
             ...............
             ...............
             ...............
-            """, spaceInvader.toString());
+            """, miceInvader.toString());
   }
 
   @Test
-  public void placeCatInArena() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(1, 1), new Position(7, 0));
+  public void placeCatInArena() {
+    miceInvader.positionCat(new Dimension(), new Position(7, 0), 1);
 
     assertEquals("""
             ...............
@@ -50,43 +50,38 @@ public class miceInvaderTest {
             ...............
             ...............
             .......V.......
-            """, spaceInvader.toString());
+            """, miceInvader.toString());
   }
 
   @Test
   public void placeCatOutsideArenaThrowException() {
-    Exception exception = assertThrows(RuntimeException.class, () -> spaceInvader.positionCat(new Dimension(1, 1), new Position(15, 0)));
+    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.positionCat(new Dimension(), new Position(15, 0), 1));
 
     assertTrue(exception.getMessage().contains("Cat placed out of bounds."));
   }
 
   @Test
-  public void checkIsOutsideArenaReturnsTrue() {
+  public void checkIsOutsideArenaReturnsTrueForDefaultDim() {
     assertAll(
-            () -> assertTrue(spaceInvader.isOutsideArena(1, 1, -1, 0)),
-            () -> assertTrue(spaceInvader.isOutsideArena(1, 1, 15, 0)),
-            () -> assertTrue(spaceInvader.isOutsideArena(1, 1, 0, -1)),
-            () -> assertTrue(spaceInvader.isOutsideArena(1, 1, 0, 10)),
-            () -> assertTrue(spaceInvader.isOutsideArena(1, 2, 0, 9)),
-            () -> assertTrue(spaceInvader.isOutsideArena(2, 1, 14, 0))
+      () -> assertTrue(miceInvader.isOutsideArena(1, 1, -1, 0)),
+      () -> assertTrue(miceInvader.isOutsideArena(1, 1, 15, 0)),
+      () -> assertTrue(miceInvader.isOutsideArena(1, 1, 0, -1)),
+      () -> assertTrue(miceInvader.isOutsideArena(1, 1, 0, 10))
     );
   }
 
   @Test
-  public void checkIsOutsideArenaReturnsFalse() {
+  public void checkIsOutsideArenaReturnsFalseForDefaultDim() {
     assertAll(
-            () -> assertFalse(spaceInvader.isOutsideArena(1, 1, 0, 0)),
-            () -> assertFalse(spaceInvader.isOutsideArena(1, 1, 14, 0)),
-            () -> assertFalse(spaceInvader.isOutsideArena(1, 1, 0, 9)),
-            () -> assertFalse(spaceInvader.isOutsideArena(2, 2, 13, 8))
+      () -> assertFalse(miceInvader.isOutsideArena(1, 1, 0, 0)),
+      () -> assertFalse(miceInvader.isOutsideArena(1, 1, 14, 0)),
+      () -> assertFalse(miceInvader.isOutsideArena(1, 1, 0, 9))
     );
   }
 
   @Test
-  public void moveCatOneStepRight() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(3, 2), new Position(7, 0));
-
-    spaceInvader.moveCatRight();
+  public void placeCatWithDimInArena() {
+    miceInvader.positionCat(new Dimension(3,2), new Position(7, 0), 1);
 
     assertEquals("""
             ...............
@@ -97,16 +92,39 @@ public class miceInvaderTest {
             ...............
             ...............
             ...............
-            ........VVV....
-            ........VVV....
-            """, spaceInvader.toString());
+            .......VVV.....
+            .......VVV.....
+            """, miceInvader.toString());
   }
 
   @Test
-  public void moveCatRightButStaysStill() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(1, 1), new Position(14, 0));
+  public void placeCatWithDimensionsOutsideArena() {
+    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.positionCat(new Dimension(3, 2), new Position(13, 8), 1));
 
-    spaceInvader.moveCatRight();
+    assertTrue(exception.getMessage().contains("Cat placed out of bounds."));
+  }
+
+  @Test
+  public void checkIsOutsideArenaReturnsTrueForNonDefaultDim() {
+    assertAll(
+      () -> assertTrue(miceInvader.isOutsideArena(1, 2, 0, 9)),
+      () -> assertTrue(miceInvader.isOutsideArena(2, 1, 14, 0))
+    );
+  }
+
+  @Test
+  public void checkIsOutsideArenaReturnsFalseForNonDefaultDim() {
+    assertAll(
+      () -> assertFalse(miceInvader.isOutsideArena(1, 2, 0, 8)),
+      () -> assertFalse(miceInvader.isOutsideArena(2, 1, 13, 0))
+    );
+  }
+
+  @Test
+  public void moveCatOneStepRight() {
+    miceInvader.positionCat(new Dimension(), new Position(13, 0), 1);
+
+    miceInvader.moveCatRight();
 
     assertEquals("""
             ...............
@@ -119,14 +137,34 @@ public class miceInvaderTest {
             ...............
             ...............
             ..............V
-            """, spaceInvader.toString());
+            """, miceInvader.toString());
   }
 
   @Test
-  public void moveCatWithDimensionsRightButStaysStill() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(3, 2), new Position(12, 0));
+  public void moveCatRightButStayStill() {
+    miceInvader.positionCat(new Dimension(), new Position(14, 0), 1);
 
-    spaceInvader.moveCatRight();
+    miceInvader.moveCatRight();
+
+    assertEquals("""
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ..............V
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void moveCatWithDimButStayStill() {
+    miceInvader.positionCat(new Dimension(3, 2), new Position(12, 0), 1);
+
+    miceInvader.moveCatRight();
 
     assertEquals("""
             ...............
@@ -139,14 +177,14 @@ public class miceInvaderTest {
             ...............
             ............VVV
             ............VVV
-            """, spaceInvader.toString());
+            """, miceInvader.toString());
   }
 
   @Test
-  public void moveCatOneStepLeft() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(3, 2), new Position(7, 0));
+  public void moveCatWithSpeed() {
+    miceInvader.positionCat(new Dimension(3, 2), new Position(9, 0), 3);
 
-    spaceInvader.moveCatLeft();
+    miceInvader.moveCatRight();
 
     assertEquals("""
             ...............
@@ -157,16 +195,16 @@ public class miceInvaderTest {
             ...............
             ...............
             ...............
-            ......VVV......
-            ......VVV......
-            """, spaceInvader.toString());
+            ............VVV
+            ............VVV
+            """, miceInvader.toString());
   }
 
   @Test
-  public void moveCatLeftButStaysStill() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(3, 2), new Position(0, 0));
+  public void moveCatWithSpeedButStayStill() {
+    miceInvader.positionCat(new Dimension(3, 2), new Position(12, 0), 3);
 
-    spaceInvader.moveCatLeft();
+    miceInvader.moveCatRight();
 
     assertEquals("""
             ...............
@@ -177,14 +215,16 @@ public class miceInvaderTest {
             ...............
             ...............
             ...............
-            VVV............
-            VVV............
-            """, spaceInvader.toString());
+            ............VVV
+            ............VVV
+            """, miceInvader.toString());
   }
 
   @Test
-  public void placeCatWithDimensions() throws RuntimeException {
-    spaceInvader.positionCat(new Dimension(3, 2), new Position(7, 0));
+  public void moveCatPartialRightWithSpeed() {
+    miceInvader.positionCat(new Dimension(3, 2), new Position(10, 0), 3);
+
+    miceInvader.moveCatRight();
 
     assertEquals("""
             ...............
@@ -195,16 +235,8 @@ public class miceInvaderTest {
             ...............
             ...............
             ...............
-            .......VVV.....
-            .......VVV.....
-            """, spaceInvader.toString());
+            ............VVV
+            ............VVV
+            """, miceInvader.toString());
   }
-
-  @Test
-  public void placeCatWithDimensionsOutsideArena() throws RuntimeException {
-    Exception exception = assertThrows(RuntimeException.class, () -> spaceInvader.positionCat(new Dimension(3, 2), new Position(13, 9)));
-
-    assertTrue(exception.getMessage().contains("Cat placed out of bounds."));
-  }
-
 }

@@ -32,11 +32,11 @@ public class MiceInvader {
     return cat != null && cat.isHere(x, y);
   }
 
-  public void positionCat(Dimension dimension, Position position) throws RuntimeException {
+  public void positionCat(Dimension dimension, Position position, int speed) throws RuntimeException {
     if (isOutsideArena(dimension.width(), dimension.height(), position.x(), position.y())) {
       throw new RuntimeException("Cat placed out of bounds.");
     }
-    cat = new Cat(dimension, position);
+    cat = new Cat(dimension, position, speed);
   }
 
   boolean isOutsideArena(int width, int height, int x, int y) {
@@ -44,14 +44,17 @@ public class MiceInvader {
   }
 
   public void moveCatRight() {
-    if (cat.getRightCorner() < arenaWidth - 1) {
+    if (cat.getRightCorner() + cat.getSpeed() < arenaWidth) {
       cat.moveRight();
+    } else {
+      cat.position(arenaWidth - cat.getWidth());
     }
   }
 
-  public void moveCatLeft() {
-    if (cat.getLeftCorner() > 0) {
-      cat.moveLeft();
-    }
-  }
+
+//  public void moveCatLeft() {
+//    if (cat.getLeftCorner() > 0) {
+//      cat.moveLeft();
+//    }
+//  }
 }
