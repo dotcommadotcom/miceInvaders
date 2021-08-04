@@ -51,10 +51,11 @@ public class MiceInvader {
     }
   }
 
-
-//  public void moveCatLeft() {
-//    if (cat.getLeftCorner() > 0) {
-//      cat.moveLeft();
-//    }
-//  }
+  public void moveCatLeft() {
+    if (cat.getLeftCorner() - cat.getSpeed() >= 0) {
+      cat.moveLeft();
+    } else {
+      cat.position(0);
+    }
+  }
 }

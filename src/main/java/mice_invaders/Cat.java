@@ -1,7 +1,7 @@
 package mice_invaders;
 
 public class Cat {
-  private Dimension dimension;
+  private final Dimension dimension;
   private int xCoordinate;
   private int yCoordinate;
   private int speed;

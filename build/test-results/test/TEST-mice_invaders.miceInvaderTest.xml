@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="mice_invaders.miceInvaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-04T08:10:00" hostname="jiwoo.local" time="0.067">
+<testsuite name="mice_invaders.miceInvaderTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2021-08-04T08:48:29" hostname="jiwoo.local" time="0.178">
   <properties/>
-  <testcase name="moveCatPartialRightWithSpeed()" classname="mice_invaders.miceInvaderTest" time="0.067"/>
+  <testcase name="createArenaAndConvertToString()" classname="mice_invaders.miceInvaderTest" time="0.033"/>
+  <testcase name="moveCatRightWithSpeedButStayStill()" classname="mice_invaders.miceInvaderTest" time="0.005"/>
+  <testcase name="moveCatRightWithSpeed()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="placeCatWithDimInArena()" classname="mice_invaders.miceInvaderTest" time="0.011"/>
+  <testcase name="checkIsOutsideArenaReturnsTrueForNonDefaultDim()" classname="mice_invaders.miceInvaderTest" time="0.011"/>
+  <testcase name="moveCatRightWithDimButStayStill()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="placeCatInArena()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="placeCatOutsideArenaThrowException()" classname="mice_invaders.miceInvaderTest" time="0.003"/>
+  <testcase name="placeCatWithDimensionsOutsideArena()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="moveCatLeftWithSpeedButStayStill()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="canaryTest()" classname="mice_invaders.miceInvaderTest" time="0.007"/>
+  <testcase name="moveCatRightButStayStill()" classname="mice_invaders.miceInvaderTest" time="0.002"/>
+  <testcase name="checkIsOutsideArenaReturnsTrueForDefaultDim()" classname="mice_invaders.miceInvaderTest" time="0.003"/>
+  <testcase name="moveCatLeftWithDimButStayStill()" classname="mice_invaders.miceInvaderTest" time="0.001"/>
+  <testcase name="checkIsOutsideArenaReturnsFalseForNonDefaultDim()" classname="mice_invaders.miceInvaderTest" time="0.01"/>
+  <testcase name="moveCatLeftWithSpeed()" classname="mice_invaders.miceInvaderTest" time="0.004"/>
+  <testcase name="checkIsOutsideArenaReturnsFalseForDefaultDim()" classname="mice_invaders.miceInvaderTest" time="0.017"/>
+  <testcase name="moveCatRightOneStep()" classname="mice_invaders.miceInvaderTest" time="0.001"/>
+  <testcase name="moveCatPartialRightWithSpeed()" classname="mice_invaders.miceInvaderTest" time="0.001"/>
+  <testcase name="moveCatLeftWithDimOneStep()" classname="mice_invaders.miceInvaderTest" time="0.003"/>
+  <testcase name="moveCatPartialLeftWithSpeed()" classname="mice_invaders.miceInvaderTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
