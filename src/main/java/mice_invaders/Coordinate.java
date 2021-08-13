@@ -1,10 +1,10 @@
 package mice_invaders;
 
-public class Position {
+public class Coordinate {
   private int x;
   private int y;
 
-  public Position(int _x, int _y) {
+  public Coordinate(int _x, int _y) {
     x = _x;
     y = _y;
   }
@@ -15,5 +15,9 @@ public class Position {
 
   public int y() {
     return y;
+  }
+
+  public void setX(int _x) {
+    x = _x;
   }
 }

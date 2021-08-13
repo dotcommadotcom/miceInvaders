@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - miceInvaderTest</title>
+<title>Test results - MiceInvaderTest</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>miceInvaderTest</h1>
+<h1>MiceInvaderTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/mice_invaders.html">mice_invaders</a> &gt; miceInvaderTest</div>
+<a href="../packages/mice_invaders.html">mice_invaders</a> &gt; MiceInvaderTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">21</div>
+<div class="counter">25</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.125s</div>
+<div class="counter">0.136s</div>
 <p>duration</p>
 </div>
 </td>
@@ -76,27 +76,27 @@
 </thead>
 <tr>
 <td class="success">canaryTest()</td>
-<td class="success">0.007s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">checkIsOutsideArenaReturnsFalseForDefaultDim()</td>
-<td class="success">0.017s</td>
+<td class="success">checkIsOutsideArenaReturnsFalseForDefaultSize()</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">checkIsOutsideArenaReturnsFalseForNonDefaultDim()</td>
-<td class="success">0.010s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">checkIsOutsideArenaReturnsTrueForDefaultDim()</td>
+<td class="success">checkIsOutsideArenaReturnsFalseForNonDefaultSize()</td>
 <td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">checkIsOutsideArenaReturnsTrueForNonDefaultDim()</td>
-<td class="success">0.011s</td>
+<td class="success">checkIsOutsideArenaReturnsTrueForDefaultSize()</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">checkIsOutsideArenaReturnsTrueForNonDefaultSize()</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -105,12 +105,22 @@
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">moveCatLeftWithDimButStayStill()</td>
-<td class="success">0.001s</td>
+<td class="success">missileHigherThanArenaThrowsException()</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">moveCatLeftWithDimOneStep()</td>
+<td class="success">missileWiderThanCatThrowsException()</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">moveCatLeftWithSizeButStayStill()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">moveCatLeftWithSizeOneStep()</td>
 <td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
@@ -121,42 +131,42 @@
 </tr>
 <tr>
 <td class="success">moveCatLeftWithSpeedButStayStill()</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">moveCatPartialLeftWithSpeed()</td>
 <td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">moveCatPartialLeftWithSpeed()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">moveCatPartialRightWithSpeed()</td>
-<td class="success">0.001s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">moveCatRightButStayStill()</td>
-<td class="success">0.002s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">moveCatRightOneStep()</td>
-<td class="success">0.001s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">moveCatRightWithDimButStayStill()</td>
-<td class="success">0.002s</td>
+<td class="success">moveCatRightWithSizeButStayStill()</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">moveCatRightWithSpeed()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">moveCatRightWithSpeedButStayStill()</td>
-<td class="success">0.005s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -166,17 +176,27 @@
 </tr>
 <tr>
 <td class="success">placeCatOutsideArenaThrowException()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">placeCatWithSizeInArena()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">placeCatWithSizeOutsideArena()</td>
 <td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">placeCatWithDimInArena()</td>
-<td class="success">0.011s</td>
+<td class="success">shootMissileWithDefaultSizeFromMiddleOfCat()</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">placeCatWithDimensionsOutsideArena()</td>
-<td class="success">0.002s</td>
+<td class="success">shootMissileWithNonDefaultSizeFromMiddleOfCat()</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -189,7 +209,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.7</a> at Aug 4, 2021, 5:48:29 PM</p>
+<a href="http://www.gradle.org">Gradle 6.7</a> at Aug 9, 2021, 9:33:20 PM</p>
 </div>
 </div>
 </body>
