@@ -32,11 +32,11 @@ public abstract class Sprite {
   }
 
   public int getBottom() {
-    return coordinate.y();
+    return coordinate.y() + size.height() - 1;
   }
 
   public int getTop() {
-    return coordinate.y() + size.height();
+    return coordinate.y();
   }
 
   public int getSpeed() {

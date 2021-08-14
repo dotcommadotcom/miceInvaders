@@ -20,8 +20,9 @@ public class GamePanel extends JPanel implements ActionListener {
   private void initializeBoard() {
     addKeyListener(new KeyInput());
     setBackground(Color.black);
-    setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
     setFocusable(true);
+    setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
+//    setSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
   }
 
   private void startTimer() {
@@ -34,34 +35,30 @@ public class GamePanel extends JPanel implements ActionListener {
     super.paintComponent(graphics);
 
     draw(graphics);
-
-    Toolkit.getDefaultToolkit().sync();
   }
 
   private void draw(Graphics graphics) {
     Graphics2D graphics2D = (Graphics2D) graphics;
 
     graphics2D.drawImage(gameGraphics.getCatImage(), gameGraphics.getX(), gameGraphics.getY(), this);
+
+    Toolkit.getDefaultToolkit().sync();
   }
 
   @Override
-  public void actionPerformed(ActionEvent e) {
-    move();
-  }
-
-  private void move() {
+  public void actionPerformed(ActionEvent event) {
     repaint();
   }
 
   private class KeyInput extends KeyAdapter {
     @Override
-    public void keyReleased(KeyEvent event) {
-      gameGraphics.keyReleased(event);
+    public void keyReleased(KeyEvent keyEvent) {
+      gameGraphics.keyReleased(keyEvent);
     }
 
     @Override
-    public void keyPressed(KeyEvent event) {
-      gameGraphics.keyPressed(event);
+    public void keyPressed(KeyEvent keyEvent) {
+      gameGraphics.keyPressed(keyEvent);
     }
   }
 }

@@ -16,7 +16,7 @@ public class MiceInvader {
   @Override
   public String toString() {
     StringBuilder boardArea = new StringBuilder();
-    for (int i = arenaHeight - 1; i >= 0; i--) {
+    for (int i = 0; i < arenaHeight; i++) {
       for (int j = 0; j < arenaWidth; j++) {
         boardArea.append(getMark(j, i));
       }
@@ -43,7 +43,8 @@ public class MiceInvader {
   }
 
   private boolean isSpriteHere(Sprite sprite, int x, int y) {
-    return x >= sprite.getLeft() && x < sprite.getRight() + 1 && y >= sprite.getBottom() && y < sprite.getTop();
+    return x >= sprite.getLeft() && x < sprite.getRight() + 1 &&
+            y < sprite.getBottom() + 1 && y >= sprite.getTop();
   }
 
   public void positionCat(Size size, Coordinate coordinate, int speed) throws RuntimeException {
@@ -86,7 +87,7 @@ public class MiceInvader {
   }
 
   private boolean isMissileTooHigh(Size size) {
-    return size.height() + cat.getBottom() + cat.getHeight() > arenaHeight;
+    return size.height() + cat.getHeight() > arenaHeight;
   }
 
   private boolean isMissileWiderThanCat(Size size) {
@@ -94,7 +95,7 @@ public class MiceInvader {
   }
 
   private Coordinate calculateMissileCoordinate(Size size) {
-    return new Coordinate((cat.getWidth() - size.width())/2 + cat.getLeft(), cat.getTop());
+    return new Coordinate((cat.getWidth() - size.width())/2 + cat.getLeft(), cat.getTop() - size.height());
   }
 
   public Cat getCat() {

@@ -1,13 +1,11 @@
 package mice_invaders.gui;
 
 public interface Commons {
-   int WIDTH = 800;
-   int HEIGHT = 600;
-   int INITIAL_X = 790;
-
-   //   int INITIAL_X = (int) (Commons.WIDTH * 0.5);
-   int INITIAL_Y = HEIGHT - (int) (HEIGHT * 0.1);
-   int INITIAL_SPEED = 10;
+   int WIDTH = 400;
+   int HEIGHT = 300;
+   int BOX_SIZE = 20;
+   int INITIAL_X = (int) (Commons.WIDTH * 0.5);
+   int INITIAL_Y = HEIGHT - 2 * BOX_SIZE;
+   int INITIAL_SPEED = 100;
    int DELAY = 10;
-   int BOX_SIZE = 50;
 }

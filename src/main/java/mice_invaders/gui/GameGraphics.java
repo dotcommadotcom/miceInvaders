@@ -11,20 +11,16 @@ import static mice_invaders.gui.Commons.*;
 public class GameGraphics {
   private Cat cat;
   private MiceInvader miceInvader;
-  private int dx;
-  private int dy;
-  private int x = 40;
-  private int y = 60;
-  private int w;
-  private int h;
   private Image catImage;
+  private int dy;
+  private int y;
+
 
   public GameGraphics() {
     catImage = loadImage("src/main/resources/cat.png");
 
     miceInvader = new MiceInvader(WIDTH, HEIGHT);
-    miceInvader.positionCat(new Size(catImage.getWidth(null), catImage.getHeight(null)),
-            new Coordinate(INITIAL_X, INITIAL_Y), INITIAL_SPEED);
+    miceInvader.positionCat(new Size(BOX_SIZE, BOX_SIZE), new Coordinate(INITIAL_X, INITIAL_Y), 10);
     cat = miceInvader.getCat();
   }
 
@@ -33,7 +29,7 @@ public class GameGraphics {
   }
 
   private Image scaleImage(Image image) {
-    return image.getScaledInstance(BOX_SIZE, -1, Image.SCALE_FAST);
+    return image.getScaledInstance(BOX_SIZE, BOX_SIZE, Image.SCALE_FAST);
   }
 
   public Image getCatImage() {
@@ -48,22 +44,13 @@ public class GameGraphics {
     return cat.getTop();
   }
 
-
-  public void moveLeft() {
-    miceInvader.moveCatLeft();
-  }
-
-  public void moveRight() {
-    miceInvader.moveCatRight();
-  }
-
   public void keyPressed(KeyEvent keyEvent) {
     if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
-      moveLeft();
+      miceInvader.moveCatLeft();
     }
 
     if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
-      moveRight();
+      miceInvader.moveCatRight();
     }
 
     if (keyEvent.getKeyCode() == KeyEvent.VK_UP) {

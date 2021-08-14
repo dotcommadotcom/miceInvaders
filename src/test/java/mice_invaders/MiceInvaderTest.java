@@ -37,7 +37,7 @@ public class MiceInvaderTest {
 
   @Test
   public void placeCatInArena() {
-    miceInvader.positionCat(new Size(), new Coordinate(7, 0), 1);
+    miceInvader.positionCat(new Size(), new Coordinate(7, 9), 1);
 
     assertEquals("""
             ...............
@@ -81,7 +81,7 @@ public class MiceInvaderTest {
 
   @Test
   public void placeCatWithSizeInArena() {
-    miceInvader.positionCat(new Size(3,2), new Coordinate(7, 0), 1);
+    miceInvader.positionCat(new Size(3,2), new Coordinate(7, 8), 1);
 
     assertEquals("""
             ...............
@@ -122,7 +122,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatRightOneStep() {
-    miceInvader.positionCat(new Size(), new Coordinate(13, 0), 1);
+    miceInvader.positionCat(new Size(), new Coordinate(7, 9), 1);
 
     miceInvader.moveCatRight();
 
@@ -136,13 +136,13 @@ public class MiceInvaderTest {
             ...............
             ...............
             ...............
-            ..............V
+            ........V......
             """, miceInvader.toString());
   }
 
   @Test
   public void moveCatRightButStayStill() {
-    miceInvader.positionCat(new Size(), new Coordinate(14, 0), 1);
+    miceInvader.positionCat(new Size(), new Coordinate(14, 9), 1);
 
     miceInvader.moveCatRight();
 
@@ -162,7 +162,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatRightWithSizeButStayStill() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(12, 0), 1);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(12, 8), 1);
 
     miceInvader.moveCatRight();
 
@@ -182,7 +182,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatRightWithSpeed() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(9, 0), 3);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(8, 8), 3);
 
     miceInvader.moveCatRight();
 
@@ -195,14 +195,14 @@ public class MiceInvaderTest {
             ...............
             ...............
             ...............
-            ............VVV
-            ............VVV
+            ...........VVV.
+            ...........VVV.
             """, miceInvader.toString());
   }
 
   @Test
   public void moveCatRightWithSpeedButStayStill() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(12, 0), 3);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(12, 8), 3);
 
     miceInvader.moveCatRight();
 
@@ -222,7 +222,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatPartialRightWithSpeed() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(11, 0), 3);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(11, 8), 3);
 
     miceInvader.moveCatRight();
 
@@ -242,7 +242,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatLeftWithSizeOneStep() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(1, 0), 1);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(2, 8), 1);
 
     miceInvader.moveCatLeft();
 
@@ -255,14 +255,14 @@ public class MiceInvaderTest {
             ...............
             ...............
             ...............
-            VVV............
-            VVV............
+            .VVV...........
+            .VVV...........
             """, miceInvader.toString());
   }
 
   @Test
   public void moveCatLeftWithSizeButStayStill() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(0, 0), 1);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(0, 8), 1);
 
     miceInvader.moveCatLeft();
 
@@ -282,7 +282,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatLeftWithSpeed() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(3, 0), 3);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(4, 8), 3);
 
     miceInvader.moveCatLeft();
 
@@ -295,14 +295,14 @@ public class MiceInvaderTest {
             ...............
             ...............
             ...............
-            VVV............
-            VVV............
+            .VVV...........
+            .VVV...........
             """, miceInvader.toString());
   }
 
   @Test
   public void moveCatLeftWithSpeedButStayStill() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(0, 0), 3);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(0, 8), 3);
 
     miceInvader.moveCatLeft();
 
@@ -322,7 +322,7 @@ public class MiceInvaderTest {
 
   @Test
   public void moveCatPartialLeftWithSpeed() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(1, 0), 3);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(1, 8), 3);
 
     miceInvader.moveCatLeft();
 
@@ -342,7 +342,7 @@ public class MiceInvaderTest {
 
   @Test
   public void shootMissileWithDefaultSizeFromMiddleOfCat() {
-    miceInvader.positionCat(new Size(4, 2), new Coordinate(6, 0), 1);
+    miceInvader.positionCat(new Size(4, 2), new Coordinate(6, 8), 1);
 
     miceInvader.shootMissile(new Size());
 
@@ -362,18 +362,18 @@ public class MiceInvaderTest {
 
   @Test
   public void shootMissileWithNonDefaultSizeFromMiddleOfCat() {
-    miceInvader.positionCat(new Size(6, 2), new Coordinate(4, 0), 1);
+    miceInvader.positionCat(new Size(6, 2), new Coordinate(4, 8), 1);
 
-    miceInvader.shootMissile(new Size(5, 1));
+    miceInvader.shootMissile(new Size(5, 5));
 
     assertEquals("""
             ...............
             ...............
             ...............
-            ...............
-            ...............
-            ...............
-            ...............
+            ....MMMMM......
+            ....MMMMM......
+            ....MMMMM......
+            ....MMMMM......
             ....MMMMM......
             ....VVVVVV.....
             ....VVVVVV.....
@@ -382,7 +382,7 @@ public class MiceInvaderTest {
 
   @Test
   public void missileWiderThanCatThrowsException() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(6, 0), 1);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(6, 8), 1);
 
     Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.shootMissile(new Size(4, 1)));
 
@@ -391,7 +391,7 @@ public class MiceInvaderTest {
 
   @Test
   public void missileHigherThanArenaThrowsException() {
-    miceInvader.positionCat(new Size(3, 2), new Coordinate(6, 0), 1);
+    miceInvader.positionCat(new Size(3, 2), new Coordinate(6, 8), 1);
 
     Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.shootMissile(new Size(1, 9)));
 

@@ -1,17 +1,24 @@
+example/Board.java
+ example.Board
+ example.Board$TAdapter
+mice_invaders/MiceInvader.java
+ mice_invaders.MiceInvader
+mice_invaders/Missile.java
+ mice_invaders.Missile
+mice_invaders/Coordinate.java
+ mice_invaders.Coordinate
 mice_invaders/Sprite.java
  mice_invaders.Sprite
 mice_invaders/Cat.java
  mice_invaders.Cat
 mice_invaders/gui/Commons.java
  mice_invaders.gui.Commons
-mice_invaders/Coordinate.java
- mice_invaders.Coordinate
-mice_invaders/MiceInvader.java
- mice_invaders.MiceInvader
+example/MovingSpriteEx.java
+ example.MovingSpriteEx
 mice_invaders/Size.java
  mice_invaders.Size
-mice_invaders/Missile.java
- mice_invaders.Missile
+example/SpaceShip.java
+ example.SpaceShip
 mice_invaders/gui/GamePanel.java
  mice_invaders.gui.GamePanel
  mice_invaders.gui.GamePanel$KeyInput
