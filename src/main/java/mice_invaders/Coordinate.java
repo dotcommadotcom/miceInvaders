@@ -20,4 +20,8 @@ public class Coordinate {
   public void setX(int _x) {
     x = _x;
   }
+
+  public void setY(int _y) {
+    y = _y;
+  }
 }

@@ -1,33 +1,56 @@
 package mice_invaders.gui;
 
+import mice_invaders.Coordinate;
+import mice_invaders.MiceInvader;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import static mice_invaders.gui.Commons.*;
 
 public class GamePanel extends JPanel implements ActionListener {
+  private MiceInvader miceInvader;
+  private CatGraphics catGraphics;
+  private MissileGraphics missileGraphics;
 
+  private boolean inGame = true;
+  private String message = "Game Over";
   private Timer timer;
-  private GameGraphics gameGraphics;
 
-  public GamePanel() {
-    initializeBoard();
-    gameGraphics = new GameGraphics();
+  public GamePanel(MiceInvader _miceInvader) {
+    miceInvader = _miceInvader;
+
+    initializePanel();
+    initializeGame();
     startTimer();
-  }
+  }//
 
-  private void initializeBoard() {
-    addKeyListener(new KeyInput());
-    setBackground(Color.black);
+  private void initializePanel() {
+    addKeyListener(new keyInput());
     setFocusable(true);
-    setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
-//    setSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
-  }
+    setBackground(Color.black);
+    setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
+  }//
 
   private void startTimer() {
     timer = new Timer(DELAY, this);
     timer.start();
+  }//
+
+  private void stopTimer() {
+    if (timer.isRunning()) {
+      timer.stop();
+    }
+  }//
+
+  private void initializeGame() {
+    catGraphics = new CatGraphics();
+    missileGraphics = new MissileGraphics();
+    miceInvader.positionCat(catGraphics.getSpriteSize(), new Coordinate(CAT_START_X, CAT_START_Y), INITIAL_SPEED);
   }
 
   @Override
@@ -35,30 +58,105 @@ public class GamePanel extends JPanel implements ActionListener {
     super.paintComponent(graphics);
 
     draw(graphics);
-  }
+  }//
 
   private void draw(Graphics graphics) {
-    Graphics2D graphics2D = (Graphics2D) graphics;
+    drawBackground(graphics);
 
-    graphics2D.drawImage(gameGraphics.getCatImage(), gameGraphics.getX(), gameGraphics.getY(), this);
+    if (inGame) {
+      drawGreenLine(graphics);
+      drawCat(graphics);
+      drawMissile(graphics);
+    } else {
+      stopTimer();
+      drawGameOver(graphics);
+    }
 
     Toolkit.getDefaultToolkit().sync();
+  }//
+
+  private void drawCat(Graphics graphics) {
+    if (catGraphics.isVisible()) {
+      graphics.drawImage(catGraphics.getImage(), miceInvader.getCat().getLeft(), miceInvader.getCat().getTop(), this);
+    }
+
+    if (catGraphics.isDying()) {
+      catGraphics.die();
+      inGame = false;
+    }
+  }//
+
+  private void drawMissile(Graphics graphics) {
+    if (missileGraphics.isVisible()) {
+      graphics.drawImage(missileGraphics.getImage(),
+              miceInvader.getMissile().getLeft(), miceInvader.getMissile().getTop(), this);
+    }
+  }
+
+  private void drawGreenLine(Graphics graphics) {
+    graphics.setColor(Color.green);
+    graphics.drawLine(0, GROUND, GAME_WIDTH, GROUND);
+  }//
+
+  private void drawGameOver(Graphics graphics) {
+    drawBackground(graphics);
+
+    drawMessage(graphics);
+  }//
+
+  private void drawMessage(Graphics graphics) {
+    var small = new Font("Helvetica", Font.BOLD, 14);
+    var fontMetrics = this.getFontMetrics(small);
+
+    graphics.setColor(Color.white);
+    graphics.setFont(small);
+    graphics.drawString(message, (GAME_WIDTH - fontMetrics.stringWidth(message)) / 2, GAME_WIDTH / 2);
+  }//
+
+  private void drawBackground(Graphics graphics) {
+    graphics.setColor(Color.black);
+    graphics.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+  }//
+
+  private void update() {
+    if (missileGraphics.isVisible()) {
+      miceInvader.moveMissileUp();
+    }
+
+    if (miceInvader.getMissile() != null && miceInvader.getMissile().getBottom() < 0) {
+      missileGraphics.setVisible(false);
+    }
   }
 
   @Override
-  public void actionPerformed(ActionEvent event) {
+  public void actionPerformed(ActionEvent actionEvent) {
+    update();
     repaint();
-  }
+  }//
 
-  private class KeyInput extends KeyAdapter {
+  private class keyInput extends KeyAdapter {
+
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-      gameGraphics.keyReleased(keyEvent);
     }
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-      gameGraphics.keyPressed(keyEvent);
+      if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
+        miceInvader.moveCatLeft();
+      }
+
+      if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
+        miceInvader.moveCatRight();
+      }
+
+      if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (!missileGraphics.isVisible()) {
+          miceInvader.shootMissile(missileGraphics.getSpriteSize(), MISSILE_SPEED);
+          missileGraphics.setVisible(true);
+        }
+      }
+
     }
-  }
+  }//
 }

@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="mice_invaders.MiceInvaderTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2021-08-14T05:52:17" hostname="jiwoo.local" time="0.493">
+<testsuite name="mice_invaders.MiceInvaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-16T05:34:41" hostname="jiwoo.local" time="0.05">
   <properties/>
-  <testcase name="createArenaAndConvertToString()" classname="mice_invaders.MiceInvaderTest" time="0.085"/>
-  <testcase name="moveCatRightWithSpeedButStayStill()" classname="mice_invaders.MiceInvaderTest" time="0.011"/>
-  <testcase name="moveCatRightWithSizeButStayStill()" classname="mice_invaders.MiceInvaderTest" time="0.002"/>
-  <testcase name="moveCatRightWithSpeed()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="shootMissileWithDefaultSizeFromMiddleOfCat()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="moveCatLeftWithSizeButStayStill()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="placeCatInArena()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="placeCatOutsideArenaThrowException()" classname="mice_invaders.MiceInvaderTest" time="0.075"/>
-  <testcase name="checkIsOutsideArenaReturnsTrueForDefaultSize()" classname="mice_invaders.MiceInvaderTest" time="0.025"/>
-  <testcase name="checkIsOutsideArenaReturnsTrueForNonDefaultSize()" classname="mice_invaders.MiceInvaderTest" time="0.011"/>
-  <testcase name="missileHigherThanArenaThrowsException()" classname="mice_invaders.MiceInvaderTest" time="0.016"/>
-  <testcase name="checkIsOutsideArenaReturnsFalseForDefaultSize()" classname="mice_invaders.MiceInvaderTest" time="0.016"/>
-  <testcase name="moveCatLeftWithSizeOneStep()" classname="mice_invaders.MiceInvaderTest" time="0.015"/>
-  <testcase name="moveCatLeftWithSpeedButStayStill()" classname="mice_invaders.MiceInvaderTest" time="0.027"/>
-  <testcase name="canaryTest()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="moveCatRightButStayStill()" classname="mice_invaders.MiceInvaderTest" time="0.004"/>
-  <testcase name="moveCatLeftWithSpeed()" classname="mice_invaders.MiceInvaderTest" time="0.004"/>
-  <testcase name="placeCatWithSizeOutsideArena()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="placeCatWithSizeInArena()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="checkIsOutsideArenaReturnsFalseForNonDefaultSize()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="shootMissileWithNonDefaultSizeFromMiddleOfCat()" classname="mice_invaders.MiceInvaderTest" time="0.001"/>
-  <testcase name="moveCatRightOneStep()" classname="mice_invaders.MiceInvaderTest" time="0.003"/>
-  <testcase name="moveCatPartialRightWithSpeed()" classname="mice_invaders.MiceInvaderTest" time="0.004"/>
-  <testcase name="missileWiderThanCatThrowsException()" classname="mice_invaders.MiceInvaderTest" time="0.002"/>
-  <testcase name="moveCatPartialLeftWithSpeed()" classname="mice_invaders.MiceInvaderTest" time="0.002"/>
+  <testcase name="moveMissileWithHigherSpeed()" classname="mice_invaders.MiceInvaderTest" time="0.05"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

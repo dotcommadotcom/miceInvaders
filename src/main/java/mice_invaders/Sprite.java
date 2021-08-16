@@ -11,17 +11,7 @@ public abstract class Sprite {
     speed = _speed;
   }
 
-  public void moveRight() {
-    coordinate.setX(coordinate.x() + speed);
-  }
-
-  public void moveLeft() {
-    coordinate.setX(coordinate.x() - speed);
-  }
-
-  public void position(int _xCoordinate) {
-    coordinate.setX(_xCoordinate);
-  }
+  public abstract void move(Direction direction);
 
   public int getRight() {
     return coordinate.x() + size.width() - 1;
@@ -50,5 +40,5 @@ public abstract class Sprite {
   public int getHeight() {
     return size.height();
   }
-
 }
+

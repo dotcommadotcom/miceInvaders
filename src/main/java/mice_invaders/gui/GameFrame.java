@@ -1,17 +1,21 @@
 package mice_invaders.gui;
 
-import javax.swing.*;
-import java.awt.*;
+import mice_invaders.MiceInvader;
 
+import java.awt.EventQueue;
+import javax.swing.*;
+
+import static mice_invaders.gui.Commons.GAME_HEIGHT;
+import static mice_invaders.gui.Commons.GAME_WIDTH;
 
 public class GameFrame extends JFrame {
-  public GameFrame() {
-    initializeGUI();
+
+  public GameFrame(JPanel panel) {
+    add(panel);
+    initializeFrame();
   }
 
-  private void initializeGUI() {
-    add(new GamePanel());
-
+  private void initializeFrame() {
     setResizable(false);
     pack();
 
@@ -21,8 +25,12 @@ public class GameFrame extends JFrame {
   }
 
   public static void main(String[] args) {
+    MiceInvader miceInvader = new MiceInvader(GAME_WIDTH, GAME_HEIGHT);
+    GamePanel gamePanel = new GamePanel(miceInvader);
+
     EventQueue.invokeLater(() -> {
-      GameFrame game = new GameFrame();
+
+      GameFrame game = new GameFrame(gamePanel);
       game.setVisible(true);
     });
   }

@@ -14,6 +14,11 @@ public class Size {
     height = _height;
   }
 
+  public Size(int length) {
+    width = length;
+    height = length;
+  }
+
   public int width() {
     return width;
   }

@@ -1,8 +1,10 @@
 package mice_invaders;
 
-public class MiceInvader {
+public class MiceInvader
+{
   public static final String CAT_MARK = "V";
   public static final String MISSILE_MARK = "M";
+  public static final String EMPTY_MARK = ".";
   private final int arenaWidth;
   private final int arenaHeight;
   private Cat cat;
@@ -31,7 +33,7 @@ public class MiceInvader {
     } else if (isMissile(x, y)) {
       return MISSILE_MARK;
     }
-    return ".";
+    return EMPTY_MARK;
   }
 
   private boolean isMissile(int x, int y) {
@@ -60,21 +62,21 @@ public class MiceInvader {
 
   public void moveCatRight() {
     if (cat.getRight() + cat.getSpeed() < arenaWidth) {
-      cat.moveRight();
+      cat.move(Direction.RIGHT);
     } else {
-      cat.position(arenaWidth - cat.getWidth());
+      cat.adjust(arenaWidth - cat.getWidth());
     }
   }
 
   public void moveCatLeft() {
     if (cat.getLeft() - cat.getSpeed() >= 0) {
-      cat.moveLeft();
+      cat.move(Direction.LEFT);
     } else {
-      cat.position(0);
+      cat.adjust(0);
     }
   }
 
-  public void shootMissile(Size size) {
+  public void shootMissile(Size size, int speed) {
     if (isMissileWiderThanCat(size)) {
       throw new RuntimeException("Missile is wider than cat.");
     }
@@ -83,7 +85,7 @@ public class MiceInvader {
       throw new RuntimeException("Missile is too high for arena.");
     }
 
-    missile = new Missile(size, calculateMissileCoordinate(size));
+    missile = new Missile(size, coordinateMissile(size), speed);
   }
 
   private boolean isMissileTooHigh(Size size) {
@@ -94,11 +96,27 @@ public class MiceInvader {
     return size.width() > cat.getWidth();
   }
 
-  private Coordinate calculateMissileCoordinate(Size size) {
-    return new Coordinate((cat.getWidth() - size.width())/2 + cat.getLeft(), cat.getTop() - size.height());
+  private Coordinate coordinateMissile(Size size) {
+    return new Coordinate(coordinateMissileX(size), coordinateMissileY(size));
+  }
+
+  private int coordinateMissileY(Size size) {
+    return cat.getTop() - size.height();
+  }
+
+  private int coordinateMissileX(Size size) {
+    return (cat.getWidth() - size.width()) / 2 + cat.getLeft();
   }
 
   public Cat getCat() {
     return cat;
+  }
+
+  public Missile getMissile() {
+    return missile;
+  }
+
+  public void moveMissileUp() {
+    missile.move(Direction.UP);
   }
 }

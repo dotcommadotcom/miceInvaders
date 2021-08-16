@@ -344,7 +344,7 @@ public class MiceInvaderTest {
   public void shootMissileWithDefaultSizeFromMiddleOfCat() {
     miceInvader.positionCat(new Size(4, 2), new Coordinate(6, 8), 1);
 
-    miceInvader.shootMissile(new Size());
+    miceInvader.shootMissile(new Size(), 4);
 
     assertEquals("""
             ...............
@@ -364,7 +364,7 @@ public class MiceInvaderTest {
   public void shootMissileWithNonDefaultSizeFromMiddleOfCat() {
     miceInvader.positionCat(new Size(6, 2), new Coordinate(4, 8), 1);
 
-    miceInvader.shootMissile(new Size(5, 5));
+    miceInvader.shootMissile(new Size(5, 5), 4);
 
     assertEquals("""
             ...............
@@ -384,7 +384,7 @@ public class MiceInvaderTest {
   public void missileWiderThanCatThrowsException() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(6, 8), 1);
 
-    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.shootMissile(new Size(4, 1)));
+    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.shootMissile(new Size(4, 1), 4));
 
     assertTrue(exception.getMessage().contains("Missile is wider than cat."));
   }
@@ -393,8 +393,80 @@ public class MiceInvaderTest {
   public void missileHigherThanArenaThrowsException() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(6, 8), 1);
 
-    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.shootMissile(new Size(1, 9)));
+    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.shootMissile(new Size(1, 9), 4));
 
     assertTrue(exception.getMessage().contains("Missile is too high for arena."));
   }
+
+  @Test
+  public void moveMissileUp() {
+    miceInvader.positionCat(new Size(7, 2), new Coordinate(5, 8), 2);
+    miceInvader.shootMissile(new Size(3, 2), 4);
+
+    miceInvader.moveMissileUp();
+
+    assertEquals("""
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            .......MMM.....
+            .......MMM.....
+            ...............
+            .....VVVVVVV...
+            .....VVVVVVV...
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void moveMissileOutOfArena() {
+    miceInvader.positionCat(new Size(7, 2), new Coordinate(5, 8), 2);
+    miceInvader.shootMissile(new Size(3, 2), 4);
+
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+    miceInvader.moveMissileUp();
+
+    assertEquals("""
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            .....VVVVVVV...
+            .....VVVVVVV...
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void moveMissileWithHigherSpeed() {
+    miceInvader.positionCat(new Size(7, 2), new Coordinate(5, 8), 2);
+    miceInvader.shootMissile(new Size(3, 2), 4);
+
+    miceInvader.moveMissileUp();
+
+    assertEquals("""
+            ...............
+            ...............
+            .......MMM.....
+            .......MMM.....
+            ...............
+            ...............
+            ...............
+            ...............
+            .....VVVVVVV...
+            .....VVVVVVV...
+            """, miceInvader.toString());
+  }
+
+
 }
