@@ -9,4 +9,9 @@ public class Missile extends Sprite {
   public void move(Direction direction) {
     coordinate.setY(coordinate.y() + direction.getValue() * speed);
   }
+
+  @Override
+  public void adjust(int amount) {
+
+  }
 }

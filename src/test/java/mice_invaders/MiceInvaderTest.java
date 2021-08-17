@@ -3,6 +3,8 @@ package mice_invaders;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static mice_invaders.Direction.LEFT;
+import static mice_invaders.Direction.RIGHT;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MiceInvaderTest {
@@ -124,7 +126,7 @@ public class MiceInvaderTest {
   public void moveCatRightOneStep() {
     miceInvader.positionCat(new Size(), new Coordinate(7, 9), 1);
 
-    miceInvader.moveCatRight();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
 
     assertEquals("""
             ...............
@@ -144,7 +146,7 @@ public class MiceInvaderTest {
   public void moveCatRightButStayStill() {
     miceInvader.positionCat(new Size(), new Coordinate(14, 9), 1);
 
-    miceInvader.moveCatRight();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
 
     assertEquals("""
             ...............
@@ -164,7 +166,7 @@ public class MiceInvaderTest {
   public void moveCatRightWithSizeButStayStill() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(12, 8), 1);
 
-    miceInvader.moveCatRight();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
 
     assertEquals("""
             ...............
@@ -184,7 +186,7 @@ public class MiceInvaderTest {
   public void moveCatRightWithSpeed() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(8, 8), 3);
 
-    miceInvader.moveCatRight();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
 
     assertEquals("""
             ...............
@@ -204,7 +206,7 @@ public class MiceInvaderTest {
   public void moveCatRightWithSpeedButStayStill() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(12, 8), 3);
 
-    miceInvader.moveCatRight();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
 
     assertEquals("""
             ...............
@@ -224,7 +226,7 @@ public class MiceInvaderTest {
   public void moveCatPartialRightWithSpeed() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(11, 8), 3);
 
-    miceInvader.moveCatRight();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
 
     assertEquals("""
             ...............
@@ -244,7 +246,7 @@ public class MiceInvaderTest {
   public void moveCatLeftWithSizeOneStep() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(2, 8), 1);
 
-    miceInvader.moveCatLeft();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), LEFT);
 
     assertEquals("""
             ...............
@@ -264,7 +266,7 @@ public class MiceInvaderTest {
   public void moveCatLeftWithSizeButStayStill() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(0, 8), 1);
 
-    miceInvader.moveCatLeft();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), LEFT);
 
     assertEquals("""
             ...............
@@ -284,7 +286,7 @@ public class MiceInvaderTest {
   public void moveCatLeftWithSpeed() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(4, 8), 3);
 
-    miceInvader.moveCatLeft();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), LEFT);
 
     assertEquals("""
             ...............
@@ -304,7 +306,7 @@ public class MiceInvaderTest {
   public void moveCatLeftWithSpeedButStayStill() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(0, 8), 3);
 
-    miceInvader.moveCatLeft();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), LEFT);
 
     assertEquals("""
             ...............
@@ -324,7 +326,7 @@ public class MiceInvaderTest {
   public void moveCatPartialLeftWithSpeed() {
     miceInvader.positionCat(new Size(3, 2), new Coordinate(1, 8), 3);
 
-    miceInvader.moveCatLeft();
+    miceInvader.moveSpriteInDirection(miceInvader.getCat(), LEFT);
 
     assertEquals("""
             ...............
@@ -401,9 +403,9 @@ public class MiceInvaderTest {
   @Test
   public void moveMissileUp() {
     miceInvader.positionCat(new Size(7, 2), new Coordinate(5, 8), 2);
-    miceInvader.shootMissile(new Size(3, 2), 4);
+    miceInvader.shootMissile(new Size(3, 2), 1);
 
-    miceInvader.moveMissileUp();
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
 
     assertEquals("""
             ...............
@@ -424,14 +426,14 @@ public class MiceInvaderTest {
     miceInvader.positionCat(new Size(7, 2), new Coordinate(5, 8), 2);
     miceInvader.shootMissile(new Size(3, 2), 4);
 
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
-    miceInvader.moveMissileUp();
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
 
     assertEquals("""
             ...............
@@ -452,7 +454,7 @@ public class MiceInvaderTest {
     miceInvader.positionCat(new Size(7, 2), new Coordinate(5, 8), 2);
     miceInvader.shootMissile(new Size(3, 2), 4);
 
-    miceInvader.moveMissileUp();
+    miceInvader.moveSpriteInDirection(miceInvader.getMissile(), Direction.UP);
 
     assertEquals("""
             ...............
@@ -468,5 +470,114 @@ public class MiceInvaderTest {
             """, miceInvader.toString());
   }
 
+  @Test
+  public void placeMouseWithCoordinateAndSizeInArena() {
+    miceInvader.positionMouse(new Size(2,2), new Coordinate(5, 0), 2);
+
+    assertEquals("""
+            .....YY........
+            .....YY........
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void placeMouseWithSizeOutsideArena() {
+    Exception exception = assertThrows(RuntimeException.class, () -> miceInvader.positionMouse(new Size(3, 2), new Coordinate(13, 0), 1));
+
+    assertTrue(exception.getMessage().contains("Mouse placed out of bounds."));
+  }
+
+  @Test
+  public void moveMouseRightFirstWithSpeed() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(8, 0), 3);
+
+    miceInvader.moveMouse();
+
+    assertEquals("""
+            ...........YYY.
+            ...........YYY.
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void moveMousePartialRightWithSpeedButStayStill() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
+
+    miceInvader.moveMouse();
+
+    assertEquals("""
+            ............YYY
+            ............YYY
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void moveMouseLeftWhenReachRightEdge() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
+    miceInvader.moveMouse();
+
+    miceInvader.moveMouse();
+
+    assertEquals("""
+            .........YYY...
+            .........YYY...
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            """, miceInvader.toString());
+  }
+
+  @Test
+  public void moveMouseRightWhenReachLeftEdge() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 5);
+    miceInvader.moveMouse(); // hit right wall
+    miceInvader.moveMouse(); // go left
+    miceInvader.moveMouse();
+    miceInvader.moveMouse(); // hit left wall
+
+    miceInvader.moveMouse();
+
+    assertEquals("""
+            .....YYY.......
+            .....YYY.......
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            ...............
+            """, miceInvader.toString());
+  }
 
 }

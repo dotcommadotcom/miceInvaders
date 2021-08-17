@@ -1,6 +1,7 @@
 package mice_invaders.gui;
 
 import mice_invaders.Coordinate;
+import mice_invaders.Direction;
 import mice_invaders.MiceInvader;
 
 import javax.swing.*;
@@ -10,12 +11,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import static mice_invaders.Direction.*;
+import static mice_invaders.Direction.LEFT;
+import static mice_invaders.Direction.RIGHT;
 import static mice_invaders.gui.Commons.*;
 
 public class GamePanel extends JPanel implements ActionListener {
   private MiceInvader miceInvader;
   private CatGraphics catGraphics;
   private MissileGraphics missileGraphics;
+  private MouseGraphics mouseGraphics;
 
   private boolean inGame = true;
   private String message = "Game Over";
@@ -50,7 +55,9 @@ public class GamePanel extends JPanel implements ActionListener {
   private void initializeGame() {
     catGraphics = new CatGraphics();
     missileGraphics = new MissileGraphics();
-    miceInvader.positionCat(catGraphics.getSpriteSize(), new Coordinate(CAT_START_X, CAT_START_Y), INITIAL_SPEED);
+    mouseGraphics = new MouseGraphics();
+    miceInvader.positionCat(catGraphics.getSpriteSize(), new Coordinate(CAT_START_X, CAT_START_Y), CAT_SPEED);
+    miceInvader.positionMouse(mouseGraphics.getSpriteSize(), new Coordinate(MOUSE_START_X, MOUSE_START_Y), MOUSE_SPEED);
   }
 
   @Override
@@ -67,6 +74,7 @@ public class GamePanel extends JPanel implements ActionListener {
       drawGreenLine(graphics);
       drawCat(graphics);
       drawMissile(graphics);
+      drawMouse(graphics);
     } else {
       stopTimer();
       drawGameOver(graphics);
@@ -92,6 +100,14 @@ public class GamePanel extends JPanel implements ActionListener {
               miceInvader.getMissile().getLeft(), miceInvader.getMissile().getTop(), this);
     }
   }
+
+  private void drawMouse(Graphics graphics) {
+    if (mouseGraphics.isVisible()) {
+      graphics.drawImage(mouseGraphics.getImage(),
+              miceInvader.getMouse().getLeft(), miceInvader.getMouse().getTop(), this);
+    }
+  }
+
 
   private void drawGreenLine(Graphics graphics) {
     graphics.setColor(Color.green);
@@ -119,8 +135,11 @@ public class GamePanel extends JPanel implements ActionListener {
   }//
 
   private void update() {
+
+    miceInvader.moveMouse();
+
     if (missileGraphics.isVisible()) {
-      miceInvader.moveMissileUp();
+      miceInvader.moveSpriteInDirection(miceInvader.getMissile(), UP);
     }
 
     if (miceInvader.getMissile() != null && miceInvader.getMissile().getBottom() < 0) {
@@ -143,11 +162,11 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
       if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
-        miceInvader.moveCatLeft();
+        miceInvader.moveSpriteInDirection(miceInvader.getCat(), LEFT);
       }
 
       if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
-        miceInvader.moveCatRight();
+        miceInvader.moveSpriteInDirection(miceInvader.getCat(), RIGHT);
       }
 
       if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {

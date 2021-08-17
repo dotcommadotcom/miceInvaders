@@ -11,7 +11,9 @@ public class Cat extends Sprite {
     coordinate.setX(coordinate.x() + direction.getValue() * speed);
   }
 
+  @Override
   public void adjust(int amount) {
     coordinate.setX(amount);
   }
+
 }

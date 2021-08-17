@@ -4,11 +4,11 @@ import mice_invaders.Size;
 
 import static mice_invaders.gui.Commons.*;
 
-public class CatGraphics extends SpriteGraphics {
+public class MouseGraphics extends SpriteGraphics {
 
   @Override
   public void initializeImage() {
-    loadImage(RESOURCES + "cat.png");
+    loadImage(RESOURCES + "mice.png");
   }
 
   @Override
@@ -16,7 +16,3 @@ public class CatGraphics extends SpriteGraphics {
     return new Size(BOX_SIZE);
   }
 }
-
-
-
-

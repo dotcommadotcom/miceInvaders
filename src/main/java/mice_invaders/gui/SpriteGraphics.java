@@ -17,11 +17,12 @@ public abstract class SpriteGraphics {
   private boolean dying;
 
   public SpriteGraphics() {
+    setVisible(true);
     initializeImage();
   }
 
   public void die() {
-    visible = false;
+    setVisible(false);
   }
 
   public void setVisible(boolean visible) {

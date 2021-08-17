@@ -40,5 +40,11 @@ public abstract class Sprite {
   public int getHeight() {
     return size.height();
   }
+
+  public boolean isHere(int x, int y) {
+    return x >= getLeft() && x < getRight() + 1 && y < getBottom() + 1 && y >= getTop();
+  }
+
+  public abstract void adjust(int amount);
 }
 

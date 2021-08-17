@@ -1,14 +1,14 @@
 package mice_invaders;
 
-public class MiceInvader
-{
-  public static final String CAT_MARK = "V";
-  public static final String MISSILE_MARK = "M";
-  public static final String EMPTY_MARK = ".";
+import static mice_invaders.Direction.*;
+import static mice_invaders.gui.Commons.*;
+
+public class MiceInvader {
   private final int arenaWidth;
   private final int arenaHeight;
   private Cat cat;
   private Missile missile;
+  private Mouse mouse;
 
   public MiceInvader(int _arenaWidth, int _arenaHeight) {
     arenaWidth = _arenaWidth;
@@ -28,51 +28,60 @@ public class MiceInvader
   }
 
   private String getMark(int x, int y) {
-    if(isCat(x, y)) {
+    if(isSpriteHere(cat, x, y)) {
       return CAT_MARK;
-    } else if (isMissile(x, y)) {
+    } else if (isSpriteHere(missile, x, y)) {
       return MISSILE_MARK;
+    } else if (isSpriteHere(mouse, x, y)) {
+      return MOUSE_MARK;
     }
     return EMPTY_MARK;
   }
 
-  private boolean isMissile(int x, int y) {
-    return missile != null && isSpriteHere(missile, x, y);
-  }
-
-  private boolean isCat(int x, int y) {
-    return cat != null && isSpriteHere(cat, x, y);
-  }
-
   private boolean isSpriteHere(Sprite sprite, int x, int y) {
-    return x >= sprite.getLeft() && x < sprite.getRight() + 1 &&
-            y < sprite.getBottom() + 1 && y >= sprite.getTop();
+    return sprite != null && sprite.isHere(x, y);
+  }
+
+  public Cat getCat() {
+    return cat;
+  }
+
+  public Missile getMissile() {
+    return missile;
+  }
+
+  public Mouse getMouse() { return mouse;
   }
 
   public void positionCat(Size size, Coordinate coordinate, int speed) throws RuntimeException {
-    if (isOutsideArena(size.width(), size.height(), coordinate.x(), coordinate.y())) {
-      throw new RuntimeException("Cat placed out of bounds.");
-    }
+    checkArenaBoundary(size, coordinate, "Cat");
+
     cat = new Cat(size, coordinate, speed);
   }
 
-  boolean isOutsideArena(int width, int height, int x, int y) {
-    return 0 > x || x + width > arenaWidth || 0 > y || y + height > arenaHeight;
-  }
-
-  public void moveCatRight() {
-    if (cat.getRight() + cat.getSpeed() < arenaWidth) {
-      cat.move(Direction.RIGHT);
-    } else {
-      cat.adjust(arenaWidth - cat.getWidth());
+  public void moveSpriteInDirection(Sprite sprite, Direction direction) {
+    if (direction == RIGHT) {
+      moveSpriteRight(sprite);
+    } else if (direction == LEFT) {
+      moveSpriteLeft(sprite);
+    } else if (direction == UP) {
+      sprite.move(UP);
     }
   }
 
-  public void moveCatLeft() {
-    if (cat.getLeft() - cat.getSpeed() >= 0) {
-      cat.move(Direction.LEFT);
+  private void moveSpriteRight(Sprite sprite) {
+    if (sprite.getRight() + sprite.getSpeed() < arenaWidth) {
+      sprite.move(RIGHT);
     } else {
-      cat.adjust(0);
+      sprite.adjust(arenaWidth - sprite.getWidth());
+    }
+  }
+
+  private void moveSpriteLeft(Sprite sprite) {
+    if (sprite.getLeft() - sprite.getSpeed() >= 0) {
+      sprite.move(LEFT);
+    } else {
+      sprite.adjust(0);
     }
   }
 
@@ -97,26 +106,27 @@ public class MiceInvader
   }
 
   private Coordinate coordinateMissile(Size size) {
-    return new Coordinate(coordinateMissileX(size), coordinateMissileY(size));
+    return new Coordinate((cat.getWidth() - size.width()) / 2 + cat.getLeft(),
+            cat.getTop() - size.height());
   }
 
-  private int coordinateMissileY(Size size) {
-    return cat.getTop() - size.height();
+  public void positionMouse(Size size, Coordinate coordinate, int speed) throws RuntimeException {
+    checkArenaBoundary(size, coordinate, "Mouse");
+
+    mouse = new Mouse(size, coordinate, speed);
   }
 
-  private int coordinateMissileX(Size size) {
-    return (cat.getWidth() - size.width()) / 2 + cat.getLeft();
+  public void moveMouse() {
+    moveSpriteInDirection(mouse, mouse.getDirection());
   }
 
-  public Cat getCat() {
-    return cat;
+  private void checkArenaBoundary(Size size, Coordinate coordinate, String sprite) {
+    if (isOutsideArena(size.width(), size.height(), coordinate.x(), coordinate.y())) {
+      throw new RuntimeException(sprite + " placed out of bounds.");
+    }
   }
 
-  public Missile getMissile() {
-    return missile;
-  }
-
-  public void moveMissileUp() {
-    missile.move(Direction.UP);
+  boolean isOutsideArena(int width, int height, int x, int y) {
+    return 0 > x || x + width > arenaWidth || 0 > y || y + height > arenaHeight;
   }
 }
