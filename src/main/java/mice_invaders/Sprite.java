@@ -54,5 +54,6 @@ public abstract class Sprite {
   public boolean isHere(int x, int y) {
     return x >= getLeft() && x < getRight() + 1 && y < getBottom() + 1 && y >= getTop();
   }
+
 }
 

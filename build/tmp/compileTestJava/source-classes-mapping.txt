@@ -1,2 +1,4 @@
+mice_invaders/CollisionTest.java
+ mice_invaders.CollisionTest
 mice_invaders/MiceInvaderTest.java
  mice_invaders.MiceInvaderTest

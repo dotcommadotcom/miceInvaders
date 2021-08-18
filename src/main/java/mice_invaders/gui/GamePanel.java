@@ -1,7 +1,6 @@
 package mice_invaders.gui;
 
 import mice_invaders.Coordinate;
-import mice_invaders.Direction;
 import mice_invaders.MiceInvader;
 
 import javax.swing.*;
@@ -141,9 +140,18 @@ public class GamePanel extends JPanel implements ActionListener {
       miceInvader.moveSpriteInDirection(miceInvader.getMissile(), UP);
     }
 
-    if (miceInvader.getMissile() != null && miceInvader.getMissile().getBottom() < 0) {
+    if (isMissileShot() && miceInvader.getMissile().getBottom() < 0) {
       missileGraphics.setVisible(false);
     }
+
+    if (isMissileShot() && miceInvader.detectCollision(miceInvader.getMouse(), miceInvader.getMissile())) {
+      missileGraphics.setVisible(false);
+      mouseGraphics.setVisible(false);
+    }
+  }
+
+  private boolean isMissileShot() {
+    return miceInvader.getMissile() != null;
   }
 
   @Override

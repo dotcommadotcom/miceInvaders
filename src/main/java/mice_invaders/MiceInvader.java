@@ -138,4 +138,18 @@ public class MiceInvader {
   boolean isOutsideArena(int width, int height, int x, int y) {
     return 0 > x || x + width > arenaWidth || 0 > y || y + height > arenaHeight;
   }
+
+  public boolean detectCollision(Sprite firstSprite, Sprite secondSprite) {
+    return overlapX(firstSprite, secondSprite) && overlapY(firstSprite, secondSprite);
+  }
+
+  private boolean overlapY(Sprite firstSprite, Sprite secondSprite) {
+    return firstSprite.getTop() <= secondSprite.getBottom() + 1
+            && firstSprite.getBottom() + 1 >= secondSprite.getTop();
+  }
+
+  private boolean overlapX(Sprite firstSprite, Sprite secondSprite) {
+    return firstSprite.getRight() + 1 >= secondSprite.getLeft()
+            && firstSprite.getLeft() <= secondSprite.getRight() + 1;
+  }
 }
