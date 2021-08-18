@@ -11,7 +11,17 @@ public abstract class Sprite {
     speed = _speed;
   }
 
-  public abstract void move(Direction direction);
+  public void moveHorizontal(Direction direction) {
+    coordinate.setX(coordinate.x() + direction.getValue() * speed);
+  }
+
+  public void moveVertical(Direction direction) {
+    coordinate.setY(coordinate.y() + direction.getValue() * speed);
+  }
+
+  public void adjust(int amount) {
+    coordinate.setX(amount);
+  }
 
   public int getRight() {
     return coordinate.x() + size.width() - 1;
@@ -44,7 +54,5 @@ public abstract class Sprite {
   public boolean isHere(int x, int y) {
     return x >= getLeft() && x < getRight() + 1 && y < getBottom() + 1 && y >= getTop();
   }
-
-  public abstract void adjust(int amount);
 }
 

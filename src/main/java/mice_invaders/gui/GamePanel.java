@@ -108,7 +108,6 @@ public class GamePanel extends JPanel implements ActionListener {
     }
   }
 
-
   private void drawGreenLine(Graphics graphics) {
     graphics.setColor(Color.green);
     graphics.drawLine(0, GROUND, GAME_WIDTH, GROUND);

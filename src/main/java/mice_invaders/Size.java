@@ -9,14 +9,14 @@ public class Size {
     height = 1;
   }
 
-  public Size(int _width, int _height) {
-    width = _width;
-    height = _height;
-  }
-
   public Size(int length) {
     width = length;
     height = length;
+  }
+
+  public Size(int _width, int _height) {
+    width = _width;
+    height = _height;
   }
 
   public int width() {

@@ -83,7 +83,7 @@ public class MiceInvaderTest {
 
   @Test
   public void placeCatWithSizeInArena() {
-    miceInvader.positionCat(new Size(3,2), new Coordinate(7, 8), 1);
+    miceInvader.positionCat(new Size(2), new Coordinate(7, 8), 1);
 
     assertEquals("""
             ...............
@@ -94,8 +94,8 @@ public class MiceInvaderTest {
             ...............
             ...............
             ...............
-            .......VVV.....
-            .......VVV.....
+            .......VV......
+            .......VV......
             """, miceInvader.toString());
   }
 
@@ -536,17 +536,36 @@ public class MiceInvaderTest {
   }
 
   @Test
-  public void moveMouseLeftWhenReachRightEdge() {
+  public void mouseHitsBorderReturnsTrue() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
+
+    miceInvader.moveMouse();
+
+    assertTrue(miceInvader.getMouse().isBorderHit());
+  }
+
+  @Test
+  public void mouseLeavesBorderReturnsFalse() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
+    miceInvader.moveMouse();
+
+    miceInvader.moveMouse();
+
+    assertFalse(miceInvader.getMouse().isBorderHit());
+  }
+
+  @Test
+  public void moveMouseDownToNextLineDefinedByHeight() {
     miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
     miceInvader.moveMouse();
 
     miceInvader.moveMouse();
 
     assertEquals("""
-            .........YYY...
-            .........YYY...
             ...............
             ...............
+            ............YYY
+            ............YYY
             ...............
             ...............
             ...............
@@ -557,20 +576,19 @@ public class MiceInvaderTest {
   }
 
   @Test
-  public void moveMouseRightWhenReachLeftEdge() {
-    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 5);
-    miceInvader.moveMouse(); // hit right wall
-    miceInvader.moveMouse(); // go left
-    miceInvader.moveMouse();
-    miceInvader.moveMouse(); // hit left wall
+  public void moveMouseLeftAfterLeavingRightBorder() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
+    for (int i = 0; i < 2; i++) {
+      miceInvader.moveMouse();
+    }
 
     miceInvader.moveMouse();
 
     assertEquals("""
-            .....YYY.......
-            .....YYY.......
             ...............
             ...............
+            .........YYY...
+            .........YYY...
             ...............
             ...............
             ...............
@@ -580,4 +598,26 @@ public class MiceInvaderTest {
             """, miceInvader.toString());
   }
 
+  @Test
+  public void moveMouseRightAfterLeavingLeftBorder() {
+    miceInvader.positionMouse(new Size(3, 2), new Coordinate(10, 0), 3);
+    for (int i = 0; i < 8; i++) {
+      miceInvader.moveMouse();
+    }
+
+    miceInvader.moveMouse();
+
+    assertEquals("""
+            ...............
+            ...............
+            ...............
+            ...............
+            ...YYY.........
+            ...YYY.........
+            ...............
+            ...............
+            ...............
+            ...............
+            """, miceInvader.toString());
+  }
 }

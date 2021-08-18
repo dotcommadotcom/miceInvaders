@@ -1,5 +1,7 @@
 package mice_invaders;
 
+import mice_invaders.gui.Commons;
+
 import static mice_invaders.Direction.*;
 import static mice_invaders.gui.Commons.*;
 
@@ -65,13 +67,15 @@ public class MiceInvader {
     } else if (direction == LEFT) {
       moveSpriteLeft(sprite);
     } else if (direction == UP) {
-      sprite.move(UP);
+      sprite.moveVertical(UP);
+    } else if (direction == DOWN) {
+      sprite.moveVertical(DOWN);
     }
   }
 
   private void moveSpriteRight(Sprite sprite) {
     if (sprite.getRight() + sprite.getSpeed() < arenaWidth) {
-      sprite.move(RIGHT);
+      sprite.moveHorizontal(RIGHT);
     } else {
       sprite.adjust(arenaWidth - sprite.getWidth());
     }
@@ -79,7 +83,7 @@ public class MiceInvader {
 
   private void moveSpriteLeft(Sprite sprite) {
     if (sprite.getLeft() - sprite.getSpeed() >= 0) {
-      sprite.move(LEFT);
+      sprite.moveHorizontal(LEFT);
     } else {
       sprite.adjust(0);
     }
@@ -117,7 +121,12 @@ public class MiceInvader {
   }
 
   public void moveMouse() {
-    moveSpriteInDirection(mouse, mouse.getDirection());
+    if (mouse.isBorderHit()) {
+      moveSpriteInDirection(mouse, DOWN);
+      mouse.leaveBorder();
+    } else {
+      moveSpriteInDirection(mouse, mouse.getDirection());
+    }
   }
 
   private void checkArenaBoundary(Size size, Coordinate coordinate, String sprite) {

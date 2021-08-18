@@ -13,11 +13,11 @@ public interface Commons {
 
   int GROUND = (int) (GAME_HEIGHT * 0.9);
   int BOX_SIZE = 20;
-  int DELAY = 10;
+  int DELAY = 25;
 
   int CAT_START_X = (int) (GAME_WIDTH * 0.5);
   int CAT_START_Y = GROUND - BOX_SIZE;
-  int CAT_SPEED = 20;
+  int CAT_SPEED = 25;
 
   int MOUSE_START_X = (int) (GAME_WIDTH * 0.5) + BOX_SIZE;
   int MOUSE_START_Y = BOX_SIZE;
